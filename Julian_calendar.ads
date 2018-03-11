@@ -1,11 +1,11 @@
 -- Julian_calendar.ads
 -- Specifications of conversion routines between julian and gregorian calendar
 -- versus Julian day. Here they are named Roman calendar.
--- i.e. Julian calendar as initiated by Julius Caesar in 709 Ab Urbe Condita
--- and Gregorian calendar as enforced by Gregorius XIII in 1582 Anno Domini)
--- are also implemented here.
--- The computation of Easter following Julian and Gregorian computus
--- is also specified here.
+-- The Julian calendar was initiated by Julius Caesar in 709 Ab Urbe Condita.
+-- The Gregorian calendar was enforced by Gregorius XIII in 1582 Anno Domini.
+-- The computation of the "delay" between a Gregorian and a Julian date
+-- and the computation of Easter following Julian and Gregorian computus
+-- are also specified here.
 
 ----------------------------------------------------------------------------
 -- Copyright Miletus 2016
