@@ -23,8 +23,8 @@ over a time span of 148 centuries.
 ## Scaliger-Ada_conversion
 Convert to/from Julian day and Ada time.
 ## Cycle_computations
-Define the integer division with remainder, and the integer division with "ceiling"
-These routines facilitate calendar computations
+Define the integer division with remainder, and the integer division with "ceiling". 
+These routines facilitate calendar computations.
 ## milesian_environment
 Instantiations of IO packages.
 ## Milesian_calendar
