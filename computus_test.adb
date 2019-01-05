@@ -2,9 +2,11 @@
 -- copyright Miletus 2015-2017 - no transformation allowed, no commercial use
 -- application developed using GPS GPL 2014 of Adacore
 -- inquiries: see www.calendriermilesien.org
--- Version M2017-11-14 : several tests possible within one single session.
+-- Versions
+--   M2017-11-14 : several tests possible within one single session.
+--   M2019-01-16 : minor presentation enhancement
 ----------------------------------------------------------------------------
--- Copyright Miletus 2015-2017
+-- Copyright Miletus 2015-2019
 -- Permission is hereby granted, free of charge, to any person obtaining
 -- a copy of this software and associated documentation files (the
 -- "Software"), to deal in the Software without restriction, including
@@ -64,7 +66,7 @@ procedure computus_test is
 
 
 begin
-   Put ("Copyright Louis-A. de Fouquieres, Miletus, 2015-2017, calendriermilesien.org");
+   Put ("Copyright Louis-A. de Fouquieres, Miletus, 2015-2019, calendriermilesien.org");
    New_Line;
    loop
       begin -- a block with exception handler
@@ -101,7 +103,7 @@ begin
                   end loop;
                   when others =>  raise Command_error;
                end case;
-               Put (" .. End comparison.");
+               New_Line; Put ("== End comparison ==");
 
             when others => raise Command_error;
          end case;
