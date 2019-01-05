@@ -1,6 +1,6 @@
 -- Package body Milesian_calendar
 ----------------------------------------------------------------------------
--- Copyright Miletus 2016
+-- Copyright Miletus 2016-2019
 -- Permission is hereby granted, free of charge, to any person obtaining
 -- a copy of this software and associated documentation files (the
 -- "Software"), to deal in the Software without restriction, including
@@ -21,16 +21,8 @@
 -- or the use or other dealings in the software.
 -- Inquiries: www.calendriermilesien.org
 -------------------------------------------------------------------------------
--- Version 2: uses Milesian solar intercalation:
--- as an extension to the Gregorian rules,
--- every 3200 years, the 400-year that is bissextile under Gregorian rule
--- is not under Milesian rule.
--- The years under this rule are -4000, -800, 2400, 5600, 8800...
--- The Milesian era numbered '0' starts at -4000.
--- This can be considered as the Milesian epoch.
--- The Milesian era numbered '1' starts on 1 1m -800 until 30 12m 2399.
--- This era can be considered "historical", since there is no serious hisorical
--- date outside this era.
+-- Version 3 (M2019-01-16): back to pure Gregorian intercalation rule
+-- as it was in 2016 version.
 
 With Cycle_Computations;
 
@@ -42,13 +34,12 @@ Package body Milesian_calendar is
 
    subtype computation_month is integer range 0..12;
 
-   function is_long_Milesian_year -- following the Milesian rule
+   function is_long_Milesian_year -- Milesian long year just before bissextile
      (y : Historical_year_number) return boolean is
-      y1 : Historical_year_number'Base := y+801;
+      y1 : Historical_year_number'Base := y+1;
    begin
       return y1 mod 4 = 0 and then (y1 mod 100 /= 0
-                                    or else (y1 mod 400 = 0
-                                   and then y1 mod 3200 /= 0));
+                                    or else (y1 mod 400 = 0));
    End is_long_Milesian_year;
 
    function valid
@@ -63,35 +54,30 @@ Package body Milesian_calendar is
    end valid;
 
    function JD_to_Milesian (jd : Julian_Day) return Milesian_Date is
-      cc : Cycle_coordinates := Decompose_cycle (jd-260081, 1168775);
-      -- intialise current day for the computations to
-      -- day of the "milesian epoch" i.e. 0 relative to 1/1m/-4000.
-      yc : Historical_year_number'Base := cc.cycle*3200 - 4000;
-      -- year components for computations initialised to base of Milesian era
-      -- i.e.: -7200 or -4000 or -800
+      cc : Cycle_coordinates := Decompose_cycle (jd-1721050, 146097);
+      -- intialise current day for the computations to 1/1m/000
+      yc : Historical_year_number'Base := cc.Cycle*400;
+      -- year component for computations initialised to base 0
       mc : computation_month; -- bimester and monthe rank for computations
+      -- cc.Phase holds is rank of day within quadricentury
    begin
-      cc := Decompose_cycle (cc.Phase, 146097);
-      -- cc.cycle is rank of quadriseculum is Milesian era,
-      -- cc.phase is rank of day within quadriseculum,
-      yc := yc + cc.cycle * 400; -- base quadriseculum
-      cc := Decompose_cycle_ceiled (cc.phase, 36524, 4);
-      -- cc.cycle is rank of century in quadriseculum,
-      -- cc.phase is rank of day within century.
-      -- rank of century is 0 to 3, phase can be 36524 if rank is 3.
-      yc := yc + (cc.cycle) * 100; -- base century
-      cc := Decompose_cycle (cc.phase, 1461); -- quadriannum
-      yc := yc + cc.cycle * 4;
-      cc := Decompose_cycle_ceiled (cc.phase, 365, 4); -- year in quadriannum
-      yc := yc + cc.cycle; -- here we get the year
-      cc := Decompose_cycle (cc.phase, 61);
+      cc := Decompose_cycle_ceiled (cc.Phase, 36524, 4);
+      -- cc.Cycle is rank of century in quadricentury,
+      -- cc.Phase is rank of day within century.
+      -- rank of century is 0 to 3, Phase can be 36524 if rank is 3.
+      yc := yc + (cc.Cycle) * 100; -- base century
+      cc := Decompose_cycle (cc.Phase, 1461); -- quadriannum
+      yc := yc + cc.Cycle * 4;
+      cc := Decompose_cycle_ceiled (cc.Phase, 365, 4); -- year in quadriannum
+      yc := yc + cc.Cycle; -- here we get the year
+      cc := Decompose_cycle (cc.Phase, 61);
       -- cycle is rank of bimester in year; phase is rank of day in bimester
-      mc := cc.cycle * 2; -- 0 to 10
-      cc := Decompose_cycle_ceiled (cc.phase, 30, 2);
+      mc := cc.Cycle * 2; -- 0 to 10
+      cc := Decompose_cycle_ceiled (cc.Phase, 30, 2);
       -- whether firt (0) or second (1) month in bimester,
       -- and rank of day, 0 .. 30 if last month.
-      return (year => yc, month => mc + cc.cycle + 1,
-              day => integer(cc.phase) + 1);
+      return (year => yc, month => mc + cc.Cycle + 1,
+              day => integer(cc.Phase) + 1);
       -- final month number and day number computed in return command.
    end JD_to_Milesian;
 
@@ -102,8 +88,8 @@ Package body Milesian_calendar is
       mc : computation_month := md.month - 1;
    begin
       if not valid (md) then raise Time_Error; end if;
-      return Julian_Day'Base (yc*365) -32113
-        + Julian_Day'Base (yc/4 -yc/100 +yc/400 -(yc +2400)/3200
+      return Julian_Day'Base (yc*365) -32115
+        + Julian_Day'Base (yc/4 -yc/100 +yc/400
                            +mc*30 +mc/2 +md.day);
       -- integer divisions yield integer quotients.
    end Milesian_to_JD;
