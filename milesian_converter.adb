@@ -1,12 +1,14 @@
 -- Milesian converter
 -- A simple converter to and from Milesian dates
 -- This programme is a console demonstrator for the referred packages
--- copyright Miletus 2015-2017 - no transformation allowed, no commercial use
+-- copyright Miletus 2015-2019 - no transformation allowed, no commercial use
 -- application developed using GPS GPL 2014 of Adacore
 -- inquiries: see www.calendriermilesien.org
--- Version M2017-01-13 : adaptation to new package specifications
+-- Versions
+--   M2017-01-13 : adaptation to new package specifications
+--   M2019-01-16 : Milesian calendar intercalation back to Gregorian
 ----------------------------------------------------------------------------
--- Copyright Miletus 2015-2017
+-- Copyright Miletus 2015-2019
 -- Permission is hereby granted, free of charge, to any person obtaining
 -- a copy of this software and associated documentation files (the
 -- "Software"), to deal in the Software without restriction, including
@@ -48,7 +50,7 @@ procedure Milesian_converter is
    Licence_text : constant String :=
      "Date converter and moon phase computer using the Milesian calendar."  & NL &
      "Written by Louis A. de Fouquieres, Miletus," & NL &
-     "Initial version M2015-09-30, actual version M2017-01-13." & NL &
+     "Initial version M2015-09-30, actual version M2019-01-16." & NL &
      "Generated with the GNAT Programming Studio GPL Edition 2014." & NL &
      "No warranty of any kind arising from or in connection with this application."
      & NL & "Library sources available on demand under GP licence."
