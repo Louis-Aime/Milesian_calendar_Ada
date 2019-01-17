@@ -33,7 +33,7 @@
 
 with Cycle_Computations; use Cycle_Computations;
 
-Package body Lunar_phase_computations is
+package body Lunar_phase_computations is
    Mean_synodic_month : constant Historical_Duration := 2_551_442.88;
    -- this value is the length of the mean synodic month
    -- suitable for mean moon computations
@@ -44,9 +44,9 @@ Package body Lunar_phase_computations is
    -- and also the next after 1 1m 2000
    -- 2000-01-06 (gregorian) at 14:20:44 Terrestrial Time (TT)
 
-   Package Lunar_Cycle is new Fixed_Cycle_Computations
+   package Lunar_Cycle is new Fixed_Cycle_Computations
      (Fixed_num => Historical_Duration);
-   Use Lunar_Cycle;
+   use Lunar_Cycle;
 
    function Mean_lunar_age (This_day : Historical_Time) return Lunar_age is
       Moon_hour : Cycle_coordinates := Decompose_cycle
