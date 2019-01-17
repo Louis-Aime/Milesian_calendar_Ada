@@ -26,7 +26,7 @@
 -------------------------------------------------------------------------------
 with Scaliger; use Scaliger;
 
-Package Lunar_phase_computations is
+package Lunar_phase_computations is
 
    subtype Lunar_age is Historical_Duration range 0.0 .. 29.9*Day_unit;
    -- A duration that is not more than a real lunar month.
