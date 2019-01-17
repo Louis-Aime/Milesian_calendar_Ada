@@ -24,13 +24,13 @@
 -- Version 3 (M2019-01-16): back to pure Gregorian intercalation rule
 -- as it was in 2016 version.
 
-With Cycle_Computations;
+with Cycle_Computations;
 
-Package body Milesian_calendar is
-   Package Julian_Day_cycle is
+package body Milesian_calendar is
+   package Julian_Day_cycle is
      new Cycle_computations.Integer_cycle_computations
      (Num => Julian_Day'Base);
-   Use Julian_Day_cycle;
+   use Julian_Day_cycle;
 
    subtype computation_month is integer range 0..12;
 
@@ -40,7 +40,7 @@ Package body Milesian_calendar is
    begin
       return y1 mod 4 = 0 and then (y1 mod 100 /= 0
                                     or else (y1 mod 400 = 0));
-   End is_long_Milesian_year;
+   end is_long_Milesian_year;
 
    function valid
      (date : milesian_date)
