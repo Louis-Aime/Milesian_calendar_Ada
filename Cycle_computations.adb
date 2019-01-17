@@ -21,9 +21,9 @@
 -- or the use or other dealings in the software.
 -- Inquiries: www.calendriermilesien.org
 -------------------------------------------------------------------------------
-Package body Cycle_computations is
+package body Cycle_computations is
 
-Package body Integer_cycle_computations is
+package body Integer_cycle_computations is
 
    function Decompose_cycle
      (Dividend : Num; Divisor: Positive_num)
@@ -58,7 +58,7 @@ Package body Integer_cycle_computations is
 
 end Integer_cycle_computations;
 
-Package body Fixed_cycle_computations is
+package body Fixed_cycle_computations is
 
    function Decompose_cycle
      (Dividend : Fixed_num; Divisor: Positive_num)
