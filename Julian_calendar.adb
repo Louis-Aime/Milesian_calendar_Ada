@@ -21,13 +21,13 @@
 -- or the use or other dealings in the software.
 -- Inquiries: www.calendriermilesien.org
 ------------------------------------------------------------------------------
-With Cycle_Computations;
+with Cycle_Computations;
 
-Package body Julian_calendar is
-   Package Julian_Day_cycle is
+package body Julian_calendar is
+   package Julian_Day_cycle is
      new Cycle_computations.Integer_cycle_computations
      (Num => Julian_Day'Base);
-   Use Julian_Day_cycle;
+   use Julian_Day_cycle;
 
    subtype computation_month is integer range 0..12;
 
