@@ -30,10 +30,10 @@
 -- Inquiries: www.calendriermilesien.org
 -------------------------------------------------------------------------------
 
-With Scaliger; use Scaliger;
+with Scaliger; use Scaliger;
 -- Defines Julian_Day and General date (i.e. Day 1..31, Month 1..12, Year).
 
-Package Julian_calendar is
+package Julian_calendar is
 
    type Roman_date is new General_date;
    type Calendar_type is (Unspecified, Julian, Gregorian);
