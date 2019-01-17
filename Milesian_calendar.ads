@@ -24,10 +24,10 @@
 -- Inquiries: www.calendriermilesien.org
 -------------------------------------------------------------------------------
 
-With Scaliger; use Scaliger;
+with Scaliger; use Scaliger;
 -- Defines Julian_Day and General date (i.e. Day 1..31, Month 1..12, Year).
 
-Package Milesian_calendar is
+package Milesian_calendar is
 
    Type Milesian_date is new General_date;
    -- the function names are similar to names of conversion functions in php
