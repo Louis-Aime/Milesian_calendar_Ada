@@ -32,7 +32,7 @@
 
 package Cycle_computations is
 
-   Generic type Num is range <>;
+   generic type Num is range <>;
    package Integer_cycle_computations is
       subtype Positive_num is Num range 1..Num'Last;
       type Cycle_coordinates is record
@@ -57,7 +57,7 @@ package Cycle_computations is
 
    end Integer_cycle_computations;
 
-   Generic type Fixed_num is delta <>;
+   generic type Fixed_num is delta <>;
    package Fixed_Cycle_Computations is
       subtype Positive_num is Fixed_num range Fixed_num'Delta..Fixed_num'Last;
       type Cycle_coordinates is record
