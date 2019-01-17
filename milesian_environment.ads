@@ -27,7 +27,7 @@ with Text_IO;
 with Scaliger;
 with Calendar.Formatting;
 with Lunar_phase_computations;
-Package Milesian_environment is
+package Milesian_environment is
    package Duration_IO is new Text_IO.Fixed_IO (Num => Duration);
    package Week_Day_IO is new
      Text_IO.Enumeration_IO (Enum => Calendar.Formatting.Day_Name);
