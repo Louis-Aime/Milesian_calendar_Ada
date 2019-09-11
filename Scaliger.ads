@@ -1,6 +1,6 @@
 -- Package Scaliger
 -- This package defines extended duration and time types using the "julian day"
--- as defined by Josef Juste Scaliger in 1783.
+-- as defined by Joseph Juste Scaliger in 1583.
 -- The duration is expressed as a number of 1/8 seconds.
 -- Two numeric conversion functions are definied
 -- exchanging a day expressed as a decimal figure from and to
